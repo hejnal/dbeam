@@ -91,7 +91,7 @@ public class QueryBuilderArgsTest {
         parseOptions("--connectionUrl=jdbc:postgresql://some_db --table=some_table " + "--limit=7");
 
     Assert.assertEquals(
-        Lists.newArrayList("SELECT * FROM some_table WHERE 1=1 LIMIT 7"),
+        Lists.newArrayList("SELECT * FROM some_table WHERE 1=1 FETCH FIRST 7 ROWS ONLY"),
         actual.buildQueries(null));
   }
 
@@ -161,7 +161,7 @@ public class QueryBuilderArgsTest {
     Assert.assertEquals(
         Lists.newArrayList(
             "SELECT * FROM some_table WHERE 1=1 "
-                + "AND col >= '2027-07-31' AND col < '2027-08-01' LIMIT 5"),
+                + "AND col >= '2027-07-31' AND col < '2027-08-01' FETCH FIRST 5 ROWS ONLY"),
         actual.buildQueries(null));
   }
 
@@ -207,7 +207,7 @@ public class QueryBuilderArgsTest {
     Assert.assertEquals(
         Lists.newArrayList(
             "SELECT * FROM (SELECT * FROM COFFEES WHERE SIZE > 10) as user_sql_query"
-                + " WHERE 1=1 LIMIT 7"),
+                + " WHERE 1=1 FETCH FIRST 7 ROWS ONLY"),
         actual.buildQueries(null));
   }
 
@@ -223,7 +223,7 @@ public class QueryBuilderArgsTest {
     Assert.assertEquals(
         Lists.newArrayList(
             "SELECT * FROM (SELECT * FROM COFFEES WHERE SIZE > 10) as user_sql_query WHERE 1=1 "
-                + "AND col >= '2027-07-31' AND col < '2027-08-01' LIMIT 7"),
+                + "AND col >= '2027-07-31' AND col < '2027-08-01' FETCH FIRST 7 ROWS ONLY"),
         actual.buildQueries(null));
   }
 
@@ -287,7 +287,7 @@ public class QueryBuilderArgsTest {
     Assert.assertEquals(
         Lists.newArrayList(
             "SELECT * FROM (SELECT * FROM COFFEES WHERE SIZE > 10) as user_sql_query WHERE 1=1"
-                + " AND col >= '2027-07-31' AND col < '2027-08-31' LIMIT 7"),
+                + " AND col >= '2027-07-31' AND col < '2027-08-31' FETCH FIRST 7 ROWS ONLY"),
         actual.buildQueries(connection));
   }
 

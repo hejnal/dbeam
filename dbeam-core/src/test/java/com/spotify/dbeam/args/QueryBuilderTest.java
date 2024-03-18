@@ -76,7 +76,7 @@ public class QueryBuilderTest {
     final QueryBuilder wrapper = QueryBuilder.fromSqlQuery("SELECT * FROM t1").withLimit(102L);
 
     final String expected =
-        "SELECT * FROM (SELECT * FROM t1) as user_sql_query WHERE 1=1 LIMIT 102";
+        "SELECT * FROM (SELECT * FROM t1) as user_sql_query WHERE 1=1 FETCH FIRST 102 ROWS ONLY";
 
     Assert.assertEquals(expected, wrapper.build());
   }

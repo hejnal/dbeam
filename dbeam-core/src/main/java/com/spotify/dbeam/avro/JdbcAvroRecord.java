@@ -36,6 +36,7 @@ import static java.sql.Types.LONGNVARCHAR;
 import static java.sql.Types.LONGVARBINARY;
 import static java.sql.Types.LONGVARCHAR;
 import static java.sql.Types.NCHAR;
+import static java.sql.Types.NUMERIC;
 import static java.sql.Types.REAL;
 import static java.sql.Types.SMALLINT;
 import static java.sql.Types.TIME;
@@ -86,6 +87,7 @@ public class JdbcAvroRecord {
         // In PostgreSQL, mySQL and H2, BIGINT is 8 bytes and fits into Java long
         return resultSet -> resultSet.getLong(column);
       case INTEGER:
+      case NUMERIC:
       case SMALLINT:
       case TINYINT:
         if (Long.class.getCanonicalName().equals(meta.getColumnClassName(column))) {

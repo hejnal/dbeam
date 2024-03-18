@@ -207,7 +207,8 @@ class QueryBuilder implements Serializable {
 
   public QueryBuilder withLimit(long limit) {
     return new QueryBuilder(
-        this.base, this.whereConditions, Optional.of(String.format(" LIMIT %d", limit)));
+        this.base, this.whereConditions,
+            Optional.of(String.format(" FETCH FIRST %d ROWS ONLY", limit)));
   }
 
   @Override
