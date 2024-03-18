@@ -154,7 +154,7 @@ class QueryBuilder implements Serializable {
   private static String createSqlPartitionCondition(
       final String partitionColumn, final String startPointIncl, final String endPointExcl) {
     return String.format(
-        " AND %s >= '%s' AND %s < '%s'",
+        " AND %s >= TO_DATE('%s', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AND %s < TO_DATE('%s', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"')",
         partitionColumn, startPointIncl, partitionColumn, endPointExcl);
   }
 

@@ -63,6 +63,7 @@ public class ParallelQueryBuilder implements Serializable {
       switch (resultSet.getMetaData().getColumnType(1)) {
         case Types.LONGVARBINARY:
         case Types.BIGINT:
+        case Types.NUMERIC:
         case Types.INTEGER:
           min = resultSet.getLong(minColumnName);
           // TODO

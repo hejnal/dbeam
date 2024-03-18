@@ -147,7 +147,8 @@ public class QueryBuilderArgsTest {
     Assert.assertEquals(
         Lists.newArrayList(
             "SELECT * FROM some_table WHERE 1=1 "
-                + "AND col >= '2027-07-31' AND col < '2027-08-01'"),
+                + "AND col >= TO_DATE('2027-07-31', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') " +
+                    "AND col < TO_DATE('2027-08-01', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"')"),
         actual.buildQueries(null));
   }
 
@@ -161,7 +162,8 @@ public class QueryBuilderArgsTest {
     Assert.assertEquals(
         Lists.newArrayList(
             "SELECT * FROM some_table WHERE 1=1 "
-                + "AND col >= '2027-07-31' AND col < '2027-08-01' FETCH FIRST 5 ROWS ONLY"),
+                + "AND col >= TO_DATE('2027-07-31', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AND col < TO_DATE('2027-08-01', " +
+                    "'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') FETCH FIRST 5 ROWS ONLY"),
         actual.buildQueries(null));
   }
 
@@ -175,7 +177,7 @@ public class QueryBuilderArgsTest {
     Assert.assertEquals(
         Lists.newArrayList(
             "SELECT * FROM some_table WHERE 1=1 "
-                + "AND col >= '2027-07-31' AND col < '2027-08-31'"),
+                + "AND col >= TO_DATE('2027-07-31', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AND col < TO_DATE('2027-08-31', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"')"),
         actual.buildQueries(null));
   }
 
@@ -190,7 +192,7 @@ public class QueryBuilderArgsTest {
     Assert.assertEquals(
         Lists.newArrayList(
             "SELECT * FROM some_table WHERE 1=1 "
-                + "AND col >= '2027-07-31T00:00:00Z' AND col < '2027-07-31T01:00:00Z'"),
+                + "AND col >= TO_DATE('2027-07-31T00:00:00Z', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AND col < TO_DATE('2027-07-31T01:00:00Z', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"')"),
         actual.buildQueries(null));
   }
 
@@ -223,7 +225,8 @@ public class QueryBuilderArgsTest {
     Assert.assertEquals(
         Lists.newArrayList(
             "SELECT * FROM (SELECT * FROM COFFEES WHERE SIZE > 10) as user_sql_query WHERE 1=1 "
-                + "AND col >= '2027-07-31' AND col < '2027-08-01' FETCH FIRST 7 ROWS ONLY"),
+                + "AND col >= TO_DATE('2027-07-31', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') " +
+                    "AND col < TO_DATE('2027-08-01', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') FETCH FIRST 7 ROWS ONLY"),
         actual.buildQueries(null));
   }
 
@@ -241,7 +244,7 @@ public class QueryBuilderArgsTest {
     Assert.assertEquals(
         Lists.newArrayList(
             "SELECT * FROM (SELECT * FROM COFFEES WHERE SIZE > 10) as user_sql_query WHERE 1=1 "
-                + "AND col >= '2027-07-31' AND col < '2027-08-31'"),
+                + "AND col >= TO_DATE('2027-07-31', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AND col < TO_DATE('2027-08-31', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"')"),
         actual.buildQueries(null));
   }
 
@@ -287,7 +290,7 @@ public class QueryBuilderArgsTest {
     Assert.assertEquals(
         Lists.newArrayList(
             "SELECT * FROM (SELECT * FROM COFFEES WHERE SIZE > 10) as user_sql_query WHERE 1=1"
-                + " AND col >= '2027-07-31' AND col < '2027-08-31' FETCH FIRST 7 ROWS ONLY"),
+                + " AND col >= TO_DATE('2027-07-31', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') AND col < TO_DATE('2027-08-31', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') FETCH FIRST 7 ROWS ONLY"),
         actual.buildQueries(connection));
   }
 
