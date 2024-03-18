@@ -1,5 +1,0 @@
-mvn clean package -Ppack
-
-java -cp ./dbeam-core/target/dbeam-core-shaded.jar com.spotify.dbeam.jobs.JdbcAvroJob --runner=DataflowRunner --project=whejna-bankinter-dataops --region=europe-west3 --subnetwork=https://www.googleapis.com/compute/v1/projects/whejna-bankinter-dataops/regions/europe-west3/subnetworks/test-vpc-subnet-ew4 --tempLocation=gs://whejna-whejna-bankinter-dataops/dataflow_temp --output=gs://whejna-whejna-bankinter-dataops-dbeam-output/ --username=system --password=Qwerty123 --connectionUrl=jdbc:oracle:thin:@34.107.120.113:1521/XEPDB1 --table=CO.CUSTOMERS --useAvroLogicalTypes=false
-
-java -cp ./dbeam-core/target/dbeam-core-shaded.jar com.spotify.dbeam.jobs.JdbcAvroJob --output=gs://whejna-whejna-bankinter-dataops-dbeam-output/ --username=system --password=Qwerty123 --connectionUrl=jdbc:oracle:thin:@34.107.120.113:1521/XEPDB1 --table=CO.CUSTOMERS --useAvroLogicalTypes=false
